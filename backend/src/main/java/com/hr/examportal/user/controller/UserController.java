@@ -6,12 +6,14 @@ import com.hr.examportal.user.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
 @RestController
 @RequestMapping("/api/users")
+@PreAuthorize("hasRole('INSTRUCTOR')")
 @RequiredArgsConstructor
 public class UserController {
 
