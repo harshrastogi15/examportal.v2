@@ -5,6 +5,7 @@ import com.hr.examportal.user.dto.ReadUserDto;
 import com.hr.examportal.user.entity.User;
 import com.hr.examportal.user.repository.UserRepository;
 import com.hr.examportal.user.service.impl.UserServiceImpl;
+import com.hr.examportal.utils.UserId;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
@@ -18,6 +19,7 @@ class UserServiceTest {
 
     private final UserRepository repo = mock(UserRepository.class);
     private final ModelMapper mapper = new ModelMapper();
+    private final UserId userId = new UserId();
     private final UserService service = new UserServiceImpl(repo, mapper);
 
     @Test

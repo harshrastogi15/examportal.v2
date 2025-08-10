@@ -13,7 +13,7 @@ import java.util.UUID;
 @Builder
 public class ReadUserDto {
 
-    private UUID id;
+    private UUID encodedId;
 
     @NotBlank(message = "Name is required")
     private String name;

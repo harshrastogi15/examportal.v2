@@ -8,8 +8,9 @@ import java.util.UUID;
 
 public interface UserService {
     ReadUserDto createUser(CreateUserDto userDto);
-    List<CreateUserDto> getAllUsers();
-    CreateUserDto getUserById(UUID id);
-    CreateUserDto updateUser(UUID id, CreateUserDto userDto);
+    List<ReadUserDto> getAllStudent();
+    ReadUserDto getUserDetail();
+
+    ReadUserDto getStudentDetail(UUID studentId);
 }
 

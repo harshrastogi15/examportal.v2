@@ -1,5 +1,6 @@
 package com.hr.examportal.user.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.hr.examportal.user.dto.CreateUserDto;
 import com.hr.examportal.user.dto.ReadUserDto;
 import com.hr.examportal.user.service.UserService;
@@ -12,30 +13,35 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
-@RequestMapping("/api/users")
-@PreAuthorize("hasRole('INSTRUCTOR')")
+@RequestMapping("/api/user")
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
 
+    @PreAuthorize("hasRole('INSTRUCTOR')")
     @PostMapping
     public ResponseEntity<ReadUserDto> createUser(@Valid @RequestBody CreateUserDto dto) {
         return ResponseEntity.ok(userService.createUser(dto));
     }
 
-    @GetMapping
-    public ResponseEntity<List<CreateUserDto>> getAllUsers() {
-        return ResponseEntity.ok(userService.getAllUsers());
+
+    @PreAuthorize("hasRole('INSTRUCTOR')")
+    @GetMapping("/students")
+    public ResponseEntity<List<ReadUserDto>> getAllStudent() {
+        return ResponseEntity.ok(userService.getAllStudent());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<CreateUserDto> getUser(@PathVariable UUID id) {
-        return ResponseEntity.ok(userService.getUserById(id));
+    @PreAuthorize("hasRole('INSTRUCTOR')")
+    @GetMapping("/student/detail")
+    public ResponseEntity<ReadUserDto> getStudentDetail(@RequestBody JsonNode payload){
+        UUID studentId = UUID.fromString(payload.get("studentId").asText());;
+        return ResponseEntity.ok(userService.getStudentDetail(studentId));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<CreateUserDto> updateUser(@PathVariable UUID id, @RequestBody CreateUserDto dto) {
-        return ResponseEntity.ok(userService.updateUser(id, dto));
+    @GetMapping("/detail")
+    public ResponseEntity<ReadUserDto> getUserDetail() {
+        return ResponseEntity.ok(userService.getUserDetail());
     }
+
 }
