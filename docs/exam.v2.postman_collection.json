@@ -1,0 +1,482 @@
+{
+	"info": {
+		"_postman_id": "51048fe4-47f7-42cd-88e0-16c50fc53ccd",
+		"name": "exam.v2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24989130"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "getUserDetail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_URL}}/user/detail",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"user",
+								"detail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllStudent",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_URL}}/user/students",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"user",
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getStudentDetail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"studentId\":\"25f41dbe-78b9-06c3-1503-59db390fb657\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST_URL}}/user/student/detail",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"user",
+								"student",
+								"detail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createNewUser - student",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_URL}}/user",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "exam",
+			"item": [
+				{
+					"name": "createExam",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_URL}}/exam",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"exam"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getExamDetail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_URL}}/exam",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"exam"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateExam",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_URL}}/exam",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"exam"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteExam",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_URL}}/exam",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"exam"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllExam",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_URL}}/exam/all",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"exam",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "copyCompleteExamWithQuestions - not in current cycle",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_URL}}/exam/copy",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"exam",
+								"copy"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "questions",
+			"item": [
+				{
+					"name": "createQuestion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_URL}}/question",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"question"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getQuestionDetails",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_URL}}/question/",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"question",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateQuestion",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_URL}}/question",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"question"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteQuestion",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_URL}}/question",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"question"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllQuestion",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_URL}}/question/all",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"question",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UploadImage",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_URL}}/upload",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteImage",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_URL}}/upload",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"upload"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "assignExam",
+			"item": [
+				{
+					"name": "assignExamToUsers",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_URL}}/assign/exam",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"assign",
+								"exam"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteAssignedExam",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_URL}}/assign/exam/user",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"assign",
+								"exam",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "userAttempt",
+			"item": [
+				{
+					"name": "StartExam",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_URL}}/attempt/start",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"attempt",
+								"start"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "generateResult",
+			"item": [
+				{
+					"name": "generateResult-MCQ",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_URL}}/generate/result/mcq",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"generate",
+								"result",
+								"mcq"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MarkSubjective",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_URL}}/generate/result/subjective",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"generate",
+								"result",
+								"subjective"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "finalResult",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_URL}}/generate/result",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"generate",
+								"result"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "userResult",
+			"item": [
+				{
+					"name": "getResult",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_URL}}/result",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"result"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
