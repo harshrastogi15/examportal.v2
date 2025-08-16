@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS exam (
     no_question_per_level INT[4],
     start_time TIMESTAMP NOT NULL,
     end_time TIMESTAMP NOT NULL,
-    creator_id UUID REFERENCES users(id),
+    creator_id UUID REFERENCES users(id) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL
 );
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS exam (
 -- question table
 CREATE TABLE IF NOT EXISTS question (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    exam_id UUID REFERENCES exam(id),
+    exam_id UUID REFERENCES exam(id) NOT NULL,
     question_type question_type_enum NOT NULL,
     question_text TEXT NOT NULL,
     question_image_url TEXT,
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS question (
 -- question_option table
 CREATE TABLE IF NOT EXISTS question_option (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    question_id UUID REFERENCES question(id),
+    question_id UUID REFERENCES question(id) NOT NULL,
     option_label option_enum NOT NULL,
     option TEXT,
     image_url TEXT,
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS mark_scheme (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     difficulty difficulty_level_enum,
     mark INT NOT NULL,
-    exam_id UUID REFERENCES exam(id),
+    exam_id UUID REFERENCES exam(id) NOT NULL,
     updated_at TIMESTAMP NOT NULL,
     CONSTRAINT uq_exam_mark UNIQUE (exam_id, difficulty)
 );
@@ -70,13 +70,13 @@ CREATE TABLE IF NOT EXISTS mark_scheme (
 -- student_exam_assigned table
 CREATE TABLE IF NOT EXISTS student_exam_assigned (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    student_id UUID REFERENCES users(id),
-    exam_id UUID REFERENCES exam(id),
+    student_id UUID REFERENCES users(id) NOT NULL,
+    exam_id UUID REFERENCES exam(id) NOT NULL,
     status status_enum NOT NULL,
     score INT,
     start_time TIMESTAMP,
     completion_time TIMESTAMP,
-    creator_id UUID REFERENCES users(id),
+    creator_id UUID REFERENCES users(id) NOT NULL,
     assign_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT uq_exam_student UNIQUE (exam_id, student_id)
 );
@@ -84,9 +84,9 @@ CREATE TABLE IF NOT EXISTS student_exam_assigned (
 -- student_exam_questions table
 CREATE TABLE IF NOT EXISTS student_exam_questions (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    exam_assigned_id UUID REFERENCES student_exam_assigned(id),
-    question_id UUID REFERENCES question(id),
-    exam_id UUID REFERENCES exam(id),
+    exam_assigned_id UUID REFERENCES student_exam_assigned(id) NOT NULL,
+    question_id UUID REFERENCES question(id) NOT NULL,
+    exam_id UUID REFERENCES exam(id) NOT NULL,
     evaluation INT,
     assign_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT uq_exam_exam_assigned_question UNIQUE (exam_assigned_id, question_id)
@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS student_exam_questions (
 -- student_answer table
 CREATE TABLE IF NOT EXISTS student_answer (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    submission_id UUID REFERENCES student_exam_questions(id),
+    submission_id UUID REFERENCES student_exam_questions(id) NOT NULL,
     selected_option option_enum,
     subjective_answer TEXT,
     mode mode_enum,
