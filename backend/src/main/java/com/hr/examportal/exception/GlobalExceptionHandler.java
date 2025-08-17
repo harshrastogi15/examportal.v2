@@ -15,7 +15,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<ErrorResponse> handleNoSuchElement(NoSuchElementException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(new ErrorResponse("User not found", ex.getMessage()));
+                .body(new ErrorResponse("NOT FOUND", ex.getMessage()));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

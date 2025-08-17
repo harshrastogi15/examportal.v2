@@ -35,7 +35,7 @@ public class UserController {
     @PreAuthorize("hasRole('INSTRUCTOR')")
     @GetMapping("/student/detail")
     public ResponseEntity<ReadUserDto> getStudentDetail(@RequestBody JsonNode payload){
-        UUID studentId = UUID.fromString(payload.get("studentId").asText());;
+        UUID studentId = UUID.fromString(payload.get("studentId").asText());
         return ResponseEntity.ok(userService.getStudentDetail(studentId));
     }
 

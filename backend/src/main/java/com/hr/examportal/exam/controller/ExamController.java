@@ -1,6 +1,8 @@
 package com.hr.examportal.exam.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.hr.examportal.exam.dto.CreateExamDto;
+import com.hr.examportal.exam.dto.ReadExamDto;
 import com.hr.examportal.exam.service.ExamService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -17,19 +21,19 @@ public class ExamController {
 
     @PostMapping
     @PreAuthorize("hasRole('INSTRUCTOR')")
-    public ResponseEntity<Void> createExam(@Valid @RequestBody CreateExamDto dto){
-        Integer totalSum = 0;
+    public ResponseEntity<ReadExamDto> createExam(@Valid @RequestBody CreateExamDto dto){
+        Integer totalSum = dto.getEasyLevelMark() * dto.getNoQuestionPerLevel().get(0) + dto.getMediumLevelMark() * dto.getNoQuestionPerLevel().get(1) + dto.getHardLevelMark()*dto.getNoQuestionPerLevel().get(2) + dto.getSubLevelMark()* dto.getNoQuestionPerLevel().get(3);
         if(!dto.getTotalMarks().equals(totalSum)){
             throw new IllegalArgumentException("Invalid Marks");
         }
-        examService.createExam(dto);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(examService.createExam(dto));
     }
 
     @GetMapping
     @PreAuthorize("hasRole('INSTRUCTOR')")
-    public ResponseEntity<Void> getExam(){
-        return ResponseEntity.ok().build();
+    public ResponseEntity<ReadExamDto> getExam(@RequestBody JsonNode payload){
+        UUID studentId = UUID.fromString(payload.get("examId").asText());
+        return ResponseEntity.ok(examService.getExamDetails(studentId));
     }
 
     @PutMapping
