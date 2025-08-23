@@ -27,4 +27,10 @@ public interface ExamRepository extends JpaRepository<Exam, UUID> {
             "JOIN users u ON e.creator_id = u.id " +
             "WHERE e.id = :examId", nativeQuery = true)
     List<Object[]> findExamById(UUID examId);
+
+
+    @Query(value = "SELECT e.id, e.title, e.description, e.duration_minutes, e.total_marks FROM exam e WHERE e.creator_id = :userId",nativeQuery = true)
+    List<Object[]> findAllExam(UUID userId);
+
+    Optional<Exam> findByIdAndCreatorId(UUID examId, UUID creatorId);
 }

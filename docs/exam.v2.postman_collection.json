@@ -103,6 +103,15 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Java Exam\",\r\n  \"description\": \"Advanced Java concepts\",\r\n  \"instructions\": [\"Read carefully\", \"No cheating\"],\r\n  \"durationMinutes\": 62,\r\n  \"totalMarks\": 30,\r\n  \"noQuestionPerLevel\": [10, 5, 0,5],\r\n  \"startTime\": \"2025-09-01T11:00:00\",\r\n  \"endTime\": \"2025-09-01T11:00:00\",\r\n  \"easyLevelMark\": 1,\r\n  \"mediumLevelMark\": 2,\r\n  \"hardLevelMark\": 2,\r\n  \"subLevelMark\": 2\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{HOST_URL}}/exam",
 							"host": [
@@ -117,9 +126,21 @@
 				},
 				{
 					"name": "getExamDetail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"examId\": \"dbc6b399-a61d-0492-3ffc-66b1e9dd8792\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{HOST_URL}}/exam",
 							"host": [
@@ -137,6 +158,15 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"examId\": \"dbc6b399-a61d-0492-3ffc-66b1e9dd8792\",\r\n    \"data\": {\r\n        \"title\": \"Python Exam\",\r\n        \"description\": \"Advanced Java concepts\",\r\n        \"instructions\": [\r\n            \"Read carefully\",\r\n            \"No cheating\"\r\n        ],\r\n        \"durationMinutes\": 62,\r\n        \"totalMarks\": 120,\r\n        \"noQuestionPerLevel\": [\r\n            10,\r\n            5,\r\n            0,\r\n            5\r\n        ],\r\n        \"startTime\": \"2025-09-01T11:00:00\",\r\n        \"endTime\": \"2025-09-01T11:00:00\",\r\n        \"easyLevelMark\": 10,\r\n        \"mediumLevelMark\": 2,\r\n        \"hardLevelMark\": 10,\r\n        \"subLevelMark\": 2\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{HOST_URL}}/exam",
 							"host": [

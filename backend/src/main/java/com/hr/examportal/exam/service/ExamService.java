@@ -13,12 +13,11 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+
 import java.sql.Timestamp;
 import java.time.LocalTime;
-import java.util.Arrays;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -45,8 +44,7 @@ public class ExamService {
         markSchemeRepository.save(mark);
         mark = MarkScheme.builder().examId(exam.getId()).difficulty(DifficultyLevel.Subjective).mark(dto.getSubLevelMark()).build();
         markSchemeRepository.save(mark);
-        ReadExamDto rdto = getExamDetailsInternal(exam.getId());
-        return rdto;
+        return getExamDetailsInternal(exam.getId());
     }
 
     private ReadExamDto getExamDetailsInternal(UUID examId){
@@ -82,5 +80,43 @@ public class ExamService {
     public ReadExamDto getExamDetails(UUID examId){
         UUID realId = idEncoder.decodeId(examId,userId.getId());
         return getExamDetailsInternal(realId);
+    }
+
+    public List<Map<String, Object>> getAllExam() {
+        List<Map<String,Object>> exams = new ArrayList<>();
+        List<Object[]> result = examRepository.findAllExam(userId.getId());
+        for(Object[] row : result){
+            Map<String,Object> exam = new HashMap<>();
+            exam.put("examId",idEncoder.encodeId((UUID) row[0],userId.getId()));
+            exam.put("title", row[1]);
+            exam.put("description", row[2]);
+            exam.put("durationMinutes", row[3]);
+            exam.put("totalMarks", row[4]);
+            exams.add(exam);
+        }
+        return exams;
+    }
+
+    @Transactional
+    public ReadExamDto updateExam(UUID examId, CreateExamDto dto) {
+        examId = idEncoder.decodeId(examId,userId.getId());
+        Exam existingExam = examRepository.findByIdAndCreatorId(examId,userId.getId())
+                .orElseThrow(() -> new NoSuchElementException("Unable to get exam details"));
+        mapper.map(dto, existingExam);
+        examRepository.save(existingExam);
+
+        MarkScheme easy = markSchemeRepository.findByExamIdAndDifficulty(examId,DifficultyLevel.Easy);
+        MarkScheme medium = markSchemeRepository.findByExamIdAndDifficulty(examId,DifficultyLevel.Medium);
+        MarkScheme hard = markSchemeRepository.findByExamIdAndDifficulty(examId,DifficultyLevel.Hard);
+        MarkScheme subjective = markSchemeRepository.findByExamIdAndDifficulty(examId,DifficultyLevel.Subjective);
+        easy.setMark(dto.getEasyLevelMark());
+        medium.setMark(dto.getMediumLevelMark());
+        hard.setMark(dto.getHardLevelMark());
+        subjective.setMark((dto.getSubLevelMark()));
+        markSchemeRepository.save(easy);
+        markSchemeRepository.save(medium);
+        markSchemeRepository.save(hard);
+        markSchemeRepository.save(subjective);
+        return getExamDetailsInternal(examId);
     }
 }
