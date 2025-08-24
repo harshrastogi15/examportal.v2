@@ -11,10 +11,10 @@ VALUES
   ('0d1f0c8e-e95c-4e9e-a1da-d57de39fe62f', 'History Exam', 'This is a sample History exam', ARRAY['Instruction 1', 'Instruction 2'], '01:00:00', 80, ARRAY[8, 12, 15, 5], '2025-08-02 10:00:00', '2025-08-02 11:00:00', 'd16a5cc6-213f-47a2-9b6a-e83cf6608b63', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 -- Insert into question table
-INSERT INTO question (id, exam_id, question_type, question_text, question_image_url, correct_answer, suggested_answer, weight, difficulty, show_options, created_at, updated_at)
+INSERT INTO question (id, exam_id, question_type, question_text, question_image_url, correct_answer, suggested_answer, difficulty, assigned, created_at, updated_at)
 VALUES
-  ('5cbf8c8b-d0ac-4ed1-b80e-235e60968d89', '3f4a9edb-8e90-4a1f-b2fe-e95f3d643849', 'MCQ', 'What is 2 + 2?', NULL, 'A', ARRAY['A: 4', 'B: 5', 'C: 6', 'D: 3'], 10, 'Easy', TRUE, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-  ('da23cf02-f3a3-4c56-8a1b-746de34c54db', '0d1f0c8e-e95c-4e9e-a1da-d57de39fe62f', 'Subjective', 'Describe the causes of World War II.', NULL, NULL, ARRAY['Causes include nationalism, imperialism, etc.'], 20, 'Hard', FALSE, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+  ('5cbf8c8b-d0ac-4ed1-b80e-235e60968d89', '3f4a9edb-8e90-4a1f-b2fe-e95f3d643849', 'MCQ', 'What is 2 + 2?', NULL, 'A', ARRAY['A: 4', 'B: 5', 'C: 6', 'D: 3'], 'Easy', FALSE, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  ('da23cf02-f3a3-4c56-8a1b-746de34c54db', '0d1f0c8e-e95c-4e9e-a1da-d57de39fe62f', 'Subjective', 'Describe the causes of World War II.', NULL, NULL, ARRAY['Causes include nationalism, imperialism, etc.'], 'Hard', FALSE, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 -- Insert into question_option table
 INSERT INTO question_option (id, question_id, option_label, option, image_url)
@@ -47,4 +47,3 @@ INSERT INTO student_answer (id, submission_id, selected_option, subjective_answe
 VALUES
   ('d728c81b-0a66-47b9-b0b5-d4409c3a71c5', 'b0f410b9-d75a-4e73-a44c-899fc107e0db', 'A', NULL, 'Answered', CURRENT_TIMESTAMP),
   ('7598a92b-f1bb-40f0-b6c0-7c615ddfcdbd', 'b9c6f271-30e2-4d83-9d01-504b1294a0a7', NULL, 'The causes include nationalism, imperialism, and economic interests.', 'NotAnswered', CURRENT_TIMESTAMP);
-

@@ -40,9 +40,8 @@ CREATE TABLE IF NOT EXISTS question (
     question_image_url TEXT,
     correct_answer option_enum,
     suggested_answer TEXT[],
-    weight INT NOT NULL,
     difficulty difficulty_level_enum,
-    show_options BOOLEAN,
+    assigned BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL
 );
