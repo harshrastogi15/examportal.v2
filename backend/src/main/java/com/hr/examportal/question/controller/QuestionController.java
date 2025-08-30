@@ -1,5 +1,9 @@
 package com.hr.examportal.question.controller;
 
+import com.hr.examportal.question.dto.CreateQuestionDto;
+import com.hr.examportal.question.dto.ReadQuestionInstructor;
+import com.hr.examportal.question.service.QuestionService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,11 +14,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/question")
 @RequiredArgsConstructor
 public class QuestionController {
+    private final QuestionService questionService;
 
     @PostMapping
     @PreAuthorize("hasRole('INSTRUCTOR')")
-    public ResponseEntity<Void> createQuestion(){
-        return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build();
+    public ResponseEntity<ReadQuestionInstructor> createQuestion(@Valid @RequestBody CreateQuestionDto dto){
+
+        return ResponseEntity.ok(questionService.createQuestion(dto));
     }
 
     @GetMapping
