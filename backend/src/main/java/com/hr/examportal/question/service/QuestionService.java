@@ -10,6 +10,9 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.UUID;
+
 @RequiredArgsConstructor
 @Service
 public class QuestionService {
@@ -18,13 +21,19 @@ public class QuestionService {
     private final IdEncoder idEncoder;
     private final UserId userId;
     public ReadQuestionInstructor createQuestion(CreateQuestionDto dto) {
-        ReadQuestionInstructor rdto = new ReadQuestionInstructor();
         Question question = mapper.map(dto,Question.class);
         question.setExamId(idEncoder.decodeId(dto.getExamId(),userId.getId()));
-        System.out.println(question.getExamId());
-        System.out.println(question.getQuestionType());
-        System.out.println(question.getQuestionText());
         questionRepository.save(question);
-        return rdto;
+        return getQuestionDetailsInternal(question.getId());
     }
+
+    private ReadQuestionInstructor getQuestionDetailsInternal(UUID questionId){
+        ReadQuestionInstructor readQuestionInstructor= new ReadQuestionInstructor();
+        List<Object[]> result = questionRepository.findQuestionDetailsByIdAnsUserId(questionId,userId.getId());
+        readQuestionInstructor.setQuestionId(idEncoder.encodeId(questionId,userId.getId()));
+        return readQuestionInstructor;
+    }
+
+
+
 }

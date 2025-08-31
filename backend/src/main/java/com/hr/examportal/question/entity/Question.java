@@ -27,6 +27,7 @@ import java.util.UUID;
 @EntityListeners(AuditingEntityListener.class)
 public class Question {
     @Id
+    @GeneratedValue
     private UUID id;
 
     @Column(name = "exam_id", nullable = false)

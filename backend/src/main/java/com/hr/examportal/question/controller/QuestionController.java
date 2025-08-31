@@ -1,5 +1,6 @@
 package com.hr.examportal.question.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.hr.examportal.question.dto.CreateQuestionDto;
 import com.hr.examportal.question.dto.ReadQuestionInstructor;
 import com.hr.examportal.question.service.QuestionService;
@@ -9,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/question")
@@ -25,7 +28,8 @@ public class QuestionController {
 
     @GetMapping
     @PreAuthorize("hasRole('INSTRUCTOR')")
-    public ResponseEntity<Void> getQuestion(){
+    public ResponseEntity<Void> getQuestion(@RequestBody JsonNode payload){
+        UUID questionId = UUID.fromString(payload.get("questionId").asText());
         return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build();
     }
 

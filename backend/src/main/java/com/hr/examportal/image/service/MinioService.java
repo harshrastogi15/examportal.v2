@@ -2,12 +2,16 @@ package com.hr.examportal.image.service;
 
 import com.hr.examportal.exception.CustomException;
 import io.minio.*;
+import io.minio.errors.*;
 import io.minio.http.Method;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -29,13 +33,9 @@ public class MinioService {
         }
     }
 
-    public String uploadFile(MultipartFile file, String path) {
+    public void uploadFile(MultipartFile file, String objectName) {
         try {
-//            if (originalFileName != null && originalFileName.contains(".")) {
-//                extension = originalFileName.substring(originalFileName.lastIndexOf("."));
-//            }
             createBucketIfNotExists();
-            String objectName = path + "/" + "testing.png";
 
             minioClient.putObject(
                     PutObjectArgs.builder()
@@ -46,7 +46,6 @@ public class MinioService {
                             .build()
             );
 
-            return objectName;
         } catch (Exception e) {
             throw new CustomException("File upload failed!");
         }
@@ -66,17 +65,18 @@ public class MinioService {
             throw new CustomException("Error generating presigned URL!");
         }
     }
-//
-//    public InputStream downloadFile(String objectName) {
-//        try {
-//            return minioClient.getObject(
-//                    GetObjectArgs.builder()
-//                            .bucket(bucketName)
-//                            .object(objectName)
-//                            .build()
-//            );
-//        } catch (Exception e) {
-//            throw new CustomException("Error downloading file!");
-//        }
-//    }
+
+    public InputStream getObject(String objectName){
+        try {
+            return minioClient.getObject(
+                    GetObjectArgs.builder()
+                            .bucket(bucketName)
+                            .object(objectName)
+                            .build()
+            );
+        } catch (Exception e) {
+            throw new CustomException("Enable to serve");
+        }
+    }
+
 }
