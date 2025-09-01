@@ -20,6 +20,12 @@ public class CreateQuestionDto {
     @NotNull(message = "Question type is required")
     private QuestionType questionType;
 
+    private AnswerOption correctAnswer=AnswerOption.A;
+
+    private DifficultyLevel difficulty=DifficultyLevel.Easy;
+
     private String questionText = "New Question";
+
+    private List<String> suggestedAnswer=new ArrayList<>();
 }
 

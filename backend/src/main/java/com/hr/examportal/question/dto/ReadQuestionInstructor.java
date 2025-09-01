@@ -4,6 +4,7 @@ import com.hr.examportal.utils.enums.AnswerOption;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -20,4 +21,10 @@ public class ReadQuestionInstructor extends QuestionDto{
     private List<String> suggestedAnswer;
 
     private List<String> optionsUrl;
+
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
+
+    private Boolean isAssigned;
 }

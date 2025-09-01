@@ -28,9 +28,8 @@ public class QuestionController {
 
     @GetMapping
     @PreAuthorize("hasRole('INSTRUCTOR')")
-    public ResponseEntity<Void> getQuestion(@RequestBody JsonNode payload){
-        UUID questionId = UUID.fromString(payload.get("questionId").asText());
-        return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build();
+    public ResponseEntity<ReadQuestionInstructor> getQuestionInstructor(@RequestParam UUID id){
+        return ResponseEntity.ok(questionService.getQuestionDetailsInstructor(id));
     }
 
     @PutMapping
