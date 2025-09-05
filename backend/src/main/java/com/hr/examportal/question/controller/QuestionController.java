@@ -3,11 +3,14 @@ package com.hr.examportal.question.controller;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.hr.examportal.question.dto.CreateQuestionDto;
 import com.hr.examportal.question.dto.ReadQuestionInstructor;
+import com.hr.examportal.question.dto.UpdateQuestionDto;
 import com.hr.examportal.question.service.QuestionService;
+import com.hr.examportal.utils.enums.QuestionType;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,8 +37,11 @@ public class QuestionController {
 
     @PutMapping
     @PreAuthorize("hasRole('INSTRUCTOR')")
-    public ResponseEntity<Void>  updateQuestion(){
-        return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build();
+    public ResponseEntity<ReadQuestionInstructor>  updateQuestion(@Valid @RequestBody UpdateQuestionDto dto){
+        if(dto.getQuestionType().equals(QuestionType.MCQ) && (dto.getOptions()==null || (dto.getOptions().size()!=4))){
+            throw new HttpMessageNotReadableException("Invalid size of option");
+        }
+        return ResponseEntity.ok(questionService.updateQuestion(dto));
     }
 
     @DeleteMapping

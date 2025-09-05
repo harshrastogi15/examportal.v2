@@ -81,6 +81,15 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{HOST_URL}}/user",
 							"host": [
@@ -134,7 +143,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"examId\": \"dbc6b399-a61d-0492-3ffc-66b1e9dd8792\"\r\n}",
+							"raw": "{\r\n    \"examId\": \"a93f3080-6277-08aa-11df-2284d23c78a3\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -242,6 +251,15 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"examId\": \"a93f3080-6277-08aa-11df-2284d23c78a3\",\r\n    \"questionType\": \"Subjective\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{HOST_URL}}/question",
 							"host": [
@@ -256,17 +274,34 @@
 				},
 				{
 					"name": "getQuestionDetails",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{HOST_URL}}/question/",
+							"raw": "{{HOST_URL}}/question?id=8a8a62f6-4524-04b2-1051-caa1dd7905ca",
 							"host": [
 								"{{HOST_URL}}"
 							],
 							"path": [
-								"question",
-								""
+								"question"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "8a8a62f6-4524-04b2-1051-caa1dd7905ca"
+								}
 							]
 						}
 					},
@@ -277,6 +312,15 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"questionId\": \"8a8a62f6-4524-04b2-1051-caa1dd7905ca\",\r\n  \"examId\": \"a93f3080-6277-08aa-11df-2284d23c78a3\",      \r\n  \"questionType\": \"MCQ\",  \r\n  \"questionText\": \"What is the capital of India?\",\r\n  \"difficulty\": \"Easy\",  \r\n  \"options\": [\"Paris\", \"London\", \"Berlin\",\"Delhi\"],\r\n  \"correctAnswer\": \"D\",  \r\n  \"suggestedAnswer\": [\"Paris\", \"London\"]  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{HOST_URL}}/question",
 							"host": [
@@ -327,15 +371,38 @@
 				{
 					"name": "UploadImage",
 					"request": {
-						"method": "POST",
-						"header": [],
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/harsh/OneDrive/Pictures/Screenshots/Screenshot 2025-05-18 194818.png"
+								},
+								{
+									"key": "metadata",
+									"value": "{\"questionId\": \"92b2e68c-1ee7-0063-0f81-5f013295161d\", \"locationType\": \"Question\"}",
+									"description": "{\"folderPath\": \"users/123\", \"description\": \"Profile picture\", \"createdBy\": \"Harsh\"}",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
-							"raw": "{{HOST_URL}}/upload",
+							"raw": "{{HOST_URL}}/image",
 							"host": [
 								"{{HOST_URL}}"
 							],
 							"path": [
-								"upload"
+								"image"
 							]
 						}
 					},
@@ -347,12 +414,37 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{HOST_URL}}/upload",
+							"raw": "{{HOST_URL}}/image",
 							"host": [
 								"{{HOST_URL}}"
 							],
 							"path": [
-								"upload"
+								"image"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getImage",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{HOST_URL}}/image/eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ7XCJsb2NhdGlvblR5cGVcIjpcIlF1ZXN0aW9uXCIsXCJxdWVzdGlvbklkXCI6XCI3MjU5Y2Y1My04MDk1LTA0NGEtMWU3NS0yMmM2MDMzNDVjZTBcIixcImV4YW1JZFwiOlwiYTkzZjMwODAtNjI3Ny0wOGFhLTExZGYtMjI4NGQyM2M3OGEzXCIsXCJsb2NhdGlvblwiOlwiUXVlc3Rpb24vaW1nLnBuZ1wifSIsImV4cCI6MTc1NjY0NjQwNn0.xvoWmaSzb_E5gjATFsCpNaiDyjHBcB551hszdmrp1ok",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"image",
+								"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ7XCJsb2NhdGlvblR5cGVcIjpcIlF1ZXN0aW9uXCIsXCJxdWVzdGlvbklkXCI6XCI3MjU5Y2Y1My04MDk1LTA0NGEtMWU3NS0yMmM2MDMzNDVjZTBcIixcImV4YW1JZFwiOlwiYTkzZjMwODAtNjI3Ny0wOGFhLTExZGYtMjI4NGQyM2M3OGEzXCIsXCJsb2NhdGlvblwiOlwiUXVlc3Rpb24vaW1nLnBuZ1wifSIsImV4cCI6MTc1NjY0NjQwNn0.xvoWmaSzb_E5gjATFsCpNaiDyjHBcB551hszdmrp1ok"
 							]
 						}
 					},
