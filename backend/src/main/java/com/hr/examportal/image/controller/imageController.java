@@ -7,6 +7,7 @@ import com.hr.examportal.image.dto.FileMetadata;
 import com.hr.examportal.image.service.ImageService;
 import com.hr.examportal.utils.TokenUtil;
 import com.hr.examportal.utils.enums.LocationType;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -54,8 +55,8 @@ public class imageController {
 
     @DeleteMapping
     @PreAuthorize("hasRole('INSTRUCTOR')")
-    public ResponseEntity<Void> deleteImage(){
-        return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build();
+    public ResponseEntity<Map<String,Object>> deleteImage(@Valid @RequestBody FileMetadata metadata){
+        return ResponseEntity.ok(imageService.deleteImage(metadata));
     }
 
     @GetMapping("/{token}")

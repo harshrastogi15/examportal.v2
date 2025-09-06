@@ -79,4 +79,17 @@ public class MinioService {
         }
     }
 
+    public void deleteFile(String objectName) {
+        try {
+            minioClient.removeObject(
+                    RemoveObjectArgs.builder()
+                            .bucket(bucketName)
+                            .object(objectName)
+                            .build()
+            );
+        } catch (Exception e) {
+            throw new CustomException("Error deleting file!");
+        }
+    }
+
 }
