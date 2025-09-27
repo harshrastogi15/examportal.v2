@@ -1,4 +1,3 @@
---  in Progress
 ## 📂 API Modules
 
 ### 1. **User**

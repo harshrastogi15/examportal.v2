@@ -224,6 +224,30 @@
 					"response": []
 				},
 				{
+					"name": "isExamReady",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_URL}}/exam/ready?flag=true",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"exam",
+								"ready"
+							],
+							"query": [
+								{
+									"key": "flag",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "copyCompleteExamWithQuestions - not in current cycle",
 					"request": {
 						"method": "POST",
@@ -314,7 +338,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"questionId\": \"8a8a62f6-4524-04b2-1051-caa1dd7905ca\",\r\n  \"examId\": \"a93f3080-6277-08aa-11df-2284d23c78a3\",      \r\n  \"questionType\": \"MCQ\",  \r\n  \"questionText\": \"What is the capital of India?\",\r\n  \"difficulty\": \"Easy\",  \r\n  \"options\": [\"Paris\", \"London\", \"Berlin\",\"Delhi\"],\r\n  \"correctAnswer\": \"D\",  \r\n  \"suggestedAnswer\": [\"Paris\", \"London\"]  \r\n}",
+							"raw": "{\r\n  \"questionId\": \"8a8a62f6-4524-04b2-1051-caa1dd7905ca\",\r\n  \"examId\": \"a93f3080-6277-08aa-11df-2284d23c78a3\",      \r\n  \"questionType\": \"Subjective\",  \r\n  \"questionText\": \"What is the capital of India?\",\r\n  \"difficulty\": \"Easy\",  \r\n  \"options\": [\"Paris\", \"London\", \"Berlin\",\"Delhi\"],\r\n  \"correctAnswer\": \"D\",  \r\n  \"suggestedAnswer\": [\"Paris\", \"London\"]  \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -390,7 +414,7 @@
 								},
 								{
 									"key": "metadata",
-									"value": "{\"questionId\": \"92b2e68c-1ee7-0063-0f81-5f013295161d\", \"locationType\": \"Question\"}",
+									"value": "{\"questionId\": \"8a8a62f6-4524-04b2-1051-caa1dd7905ca\", \"locationType\": \"OptionA\"}",
 									"description": "{\"folderPath\": \"users/123\", \"description\": \"Profile picture\", \"createdBy\": \"Harsh\"}",
 									"type": "text"
 								}
@@ -413,6 +437,15 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"questionId\": \"8a8a62f6-4524-04b2-1051-caa1dd7905ca\",\r\n    \"locationType\": \"OptionC\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{HOST_URL}}/image",
 							"host": [
@@ -460,6 +493,15 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"examId\":\"\",\r\n    \"studentId\":\"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{HOST_URL}}/assign/exam",
 							"host": [
@@ -478,6 +520,15 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"examId\":\"\",\r\n    \"studentId\":\"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{HOST_URL}}/assign/exam/user",
 							"host": [
