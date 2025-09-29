@@ -6,9 +6,12 @@ import com.hr.examportal.exam.entity.Exam;
 import com.hr.examportal.exam.entity.MarkScheme;
 import com.hr.examportal.exam.repository.ExamRepository;
 import com.hr.examportal.exam.repository.MarkSchemeRepository;
+import com.hr.examportal.exception.CustomException;
+import com.hr.examportal.question.service.QuestionService;
 import com.hr.examportal.utils.IdEncoder;
 import com.hr.examportal.utils.UserId;
 import com.hr.examportal.utils.enums.DifficultyLevel;
+import com.hr.examportal.utils.enums.QuestionType;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -27,6 +30,7 @@ public class ExamService {
     private final ModelMapper mapper;
     private final IdEncoder idEncoder;
     private final UserId userId;
+    private final QuestionService questionService;
 
     @Transactional
     public ReadExamDto createExam(CreateExamDto dto) {
@@ -35,6 +39,7 @@ public class ExamService {
         LocalTime time = LocalTime.of(minutes / 60, minutes % 60);
         exam.setDurationMinutes(time);
         exam.setCreatorId(userId.getId());
+        exam.setIsReady(false);
         examRepository.save(exam);
         MarkScheme mark = MarkScheme.builder().examId(exam.getId()).difficulty(DifficultyLevel.Easy).mark(dto.getEasyLevelMark()).build();
         markSchemeRepository.save(mark);
@@ -70,6 +75,7 @@ public class ExamService {
                     .mediumLevelMark((Integer) row[13])
                     .hardLevelMark((Integer) row[14])
                     .subLevelMark((Integer) row[15])
+                    .isReady((Boolean) row[16])
                     .build();
         } else {
             throw new NoSuchElementException("Unable to get exam details");
@@ -118,5 +124,26 @@ public class ExamService {
         markSchemeRepository.save(hard);
         markSchemeRepository.save(subjective);
         return getExamDetailsInternal(examId);
+    }
+
+    public Void examReady(UUID examId) {
+        examId = idEncoder.decodeId(examId,userId.getId());
+        Exam exam = examRepository.findByIdAndCreatorId(examId,userId.getId())
+                .orElseThrow(() -> new NoSuchElementException("Unable to get exam details"));
+        if(isExamReady(examId,exam.getNoQuestionPerLevel()))
+            exam.setIsReady(true);
+        else
+            throw new CustomException("No of Question should be present in set");
+        examRepository.save(exam);
+        return null;
+    }
+
+    private boolean isExamReady(UUID examId, List<Integer> noQuestionPerLevel) {
+        for(int i=0;i<4;i++){
+            int cnt = questionService.countQuestionByLevelAndExamId(examId,DifficultyLevel.values()[i]);
+            if(noQuestionPerLevel.get(i) > cnt)
+                return false;
+        }
+        return true;
     }
 }

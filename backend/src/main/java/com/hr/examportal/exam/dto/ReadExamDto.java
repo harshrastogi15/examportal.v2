@@ -68,6 +68,8 @@ public class ReadExamDto {
     @NotNull(message = "Subjective Level Question Mark must not be null")
     private Integer subLevelMark;
 
+    private Boolean isReady;
+
     @Column(nullable = false, updatable = false)
     private String creator;
 

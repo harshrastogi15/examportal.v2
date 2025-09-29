@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS exam (
     no_question_per_level INT[4],
     start_time TIMESTAMP NOT NULL,
     end_time TIMESTAMP NOT NULL,
+    is_ready BOOLEAN DEFAULT FALSE,
     creator_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL

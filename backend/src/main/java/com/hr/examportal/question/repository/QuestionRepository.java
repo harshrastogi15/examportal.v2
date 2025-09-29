@@ -2,6 +2,7 @@ package com.hr.examportal.question.repository;
 
 import com.hr.examportal.question.dto.ReadQuestionInstructor;
 import com.hr.examportal.question.entity.Question;
+import com.hr.examportal.utils.enums.DifficultyLevel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -47,4 +48,7 @@ public interface QuestionRepository extends JpaRepository<Question, UUID> {
     AND e.creator_id = :userId;
     """, nativeQuery = true)
     List<Object[]> findQuestionDetailsByIdAnsUserId(UUID questionId, UUID userId);
+
+    @Query(value = "SELECT COUNT(*) FROM question q WHERE q.exam_id=:examId AND q.difficulty= (:level)::difficulty_level_enum;", nativeQuery = true)
+    Integer countQuestionByExamIdAndDifficulty(UUID examId, String level);
 }

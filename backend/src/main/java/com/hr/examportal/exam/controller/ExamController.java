@@ -76,4 +76,10 @@ public class ExamController {
         return ResponseEntity.ok(examService.getAllExam());
     }
 
+    @PostMapping("ready")
+    @PreAuthorize("hasRole('INSTRUCTOR')")
+    public ResponseEntity<Void> examReady(@RequestBody JsonNode payload){
+        UUID examId = UUID.fromString(payload.get("examId").asText());
+        return ResponseEntity.ok(examService.examReady(examId));
+    }
 }

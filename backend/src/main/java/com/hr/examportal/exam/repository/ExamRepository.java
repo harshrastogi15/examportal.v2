@@ -22,7 +22,8 @@ public interface ExamRepository extends JpaRepository<Exam, UUID> {
             "       (SELECT mark FROM easy_mark) AS easy_mark, " +
             "       (SELECT mark FROM medium_mark) AS medium_mark, " +
             "       (SELECT mark FROM hard_mark) AS hard_mark, " +
-            "       (SELECT mark FROM sub_mark) AS sub_mark " +
+            "       (SELECT mark FROM sub_mark) AS sub_mark, " +
+            "       e.is_ready " +
             "FROM exam e " +
             "JOIN users u ON e.creator_id = u.id " +
             "WHERE e.id = :examId", nativeQuery = true)

@@ -62,6 +62,9 @@ public class QuestionService {
     public ReadQuestionInstructor createQuestion(CreateQuestionDto dto) {
         Question question = mapper.map(dto,Question.class);
         question.setExamId(idEncoder.decodeId(dto.getExamId(),userId.getId()));
+        if(question.getQuestionType().equals(QuestionType.Subjective)){
+            question.setDifficulty(DifficultyLevel.Subjective);
+        }
         questionRepository.save(question);
         if(question.getQuestionType().equals(QuestionType.MCQ))
             generateQuestionOption(question.getId());
@@ -173,5 +176,9 @@ public class QuestionService {
             questionOption.setOption(options.get(i));
             questionOptionRepository.save(questionOption);
         }
+    }
+
+    public Integer countQuestionByLevelAndExamId(UUID examId, DifficultyLevel level){
+        return questionRepository.countQuestionByExamIdAndDifficulty(examId,level.name());
     }
 }

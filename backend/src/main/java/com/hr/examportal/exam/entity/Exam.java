@@ -47,6 +47,9 @@ public class Exam {
     @Column(name = "end_time", nullable = false)
     private LocalDateTime endTime;
 
+    @Column(name= "is_ready")
+    private Boolean isReady;
+
     @Column(name = "creator_id", nullable = false, updatable = false)
     private UUID creatorId;
 

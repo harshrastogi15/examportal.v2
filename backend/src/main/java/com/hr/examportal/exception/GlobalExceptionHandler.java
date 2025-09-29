@@ -72,7 +72,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(CustomException.class)
     public ResponseEntity<ErrorResponse> handleCustomException(CustomException ex){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+        return ResponseEntity.status(ex.getStatusCode())
                 .body(new ErrorResponse("NOT PERFORMED", ex.getMessage()));
 
     }
