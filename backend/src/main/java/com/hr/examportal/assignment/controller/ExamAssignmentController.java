@@ -1,2 +1,29 @@
-package com.hr.examportal.assignment.controller;public class ExamAssignmentController {
+package com.hr.examportal.assignment.controller;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/api/assign")
+public class ExamAssignmentController {
+
+    @PostMapping("/exam")
+    @PreAuthorize("hasRole('INSTRUCTOR')")
+    public ResponseEntity<Void> assignExam(){
+        return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build();
+    }
+
+
+    @DeleteMapping("/exam")
+    @PreAuthorize("hasRole('INSTRUCTOR')")
+    public ResponseEntity<Void> deleteAssignedExam(){
+        return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build();
+    }
 }

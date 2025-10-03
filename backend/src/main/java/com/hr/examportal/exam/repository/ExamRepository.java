@@ -34,4 +34,7 @@ public interface ExamRepository extends JpaRepository<Exam, UUID> {
     List<Object[]> findAllExam(UUID userId);
 
     Optional<Exam> findByIdAndCreatorId(UUID examId, UUID creatorId);
+
+    @Query(value = "SELECT e.is_ready FROM exam e WHERE e.id=:examId", nativeQuery = true)
+    boolean isExamReady(UUID examId);
 }

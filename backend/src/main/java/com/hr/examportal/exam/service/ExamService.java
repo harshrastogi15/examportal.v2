@@ -108,6 +108,11 @@ public class ExamService {
         examId = idEncoder.decodeId(examId,userId.getId());
         Exam existingExam = examRepository.findByIdAndCreatorId(examId,userId.getId())
                 .orElseThrow(() -> new NoSuchElementException("Unable to get exam details"));
+        if(existingExam.getIsReady().equals(true)){
+            if(!existingExam.getNoQuestionPerLevel().equals(dto.getNoQuestionPerLevel())){
+                throw new CustomException("As exam is ready to be assigned, cant update question no.");
+            }
+        }
         mapper.map(dto, existingExam);
         examRepository.save(existingExam);
 
@@ -130,7 +135,7 @@ public class ExamService {
         examId = idEncoder.decodeId(examId,userId.getId());
         Exam exam = examRepository.findByIdAndCreatorId(examId,userId.getId())
                 .orElseThrow(() -> new NoSuchElementException("Unable to get exam details"));
-        if(isExamReady(examId,exam.getNoQuestionPerLevel()))
+        if(checkExamReady(examId,exam.getNoQuestionPerLevel()))
             exam.setIsReady(true);
         else
             throw new CustomException("No of Question should be present in set");
@@ -138,7 +143,7 @@ public class ExamService {
         return null;
     }
 
-    private boolean isExamReady(UUID examId, List<Integer> noQuestionPerLevel) {
+    private boolean checkExamReady(UUID examId, List<Integer> noQuestionPerLevel) {
         for(int i=0;i<4;i++){
             int cnt = questionService.countQuestionByLevelAndExamId(examId,DifficultyLevel.values()[i]);
             if(noQuestionPerLevel.get(i) > cnt)
@@ -146,4 +151,5 @@ public class ExamService {
         }
         return true;
     }
+
 }

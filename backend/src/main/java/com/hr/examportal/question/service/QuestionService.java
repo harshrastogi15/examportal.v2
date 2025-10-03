@@ -1,5 +1,7 @@
 package com.hr.examportal.question.service;
 
+import com.hr.examportal.exam.repository.ExamRepository;
+import com.hr.examportal.exam.service.ExamService;
 import com.hr.examportal.exception.CustomException;
 import com.hr.examportal.image.dto.FileMetadata;
 import com.hr.examportal.image.service.ImageService;
@@ -38,6 +40,7 @@ public class QuestionService {
     private final UserId userId;
     private final TokenUtil tokenUtil;
     private final ImageService imageService;
+    private final ExamRepository examRepository;
 
     private void generateQuestionOption(UUID questionId){
         for(int i = 0; i<AnswerOption.values().length; i++){
@@ -149,6 +152,11 @@ public class QuestionService {
         dto.setExamId(idEncoder.decodeId(dto.getExamId(),userId.getId()));
         if(!question.getExamId().equals(dto.getExamId())){
             throw new CustomException("Invalid data");
+        }
+        if(examRepository.isExamReady(question.getExamId())){
+            if(!question.getQuestionType().equals(dto.getQuestionType()) || !question.getDifficulty().equals(dto.getDifficulty())){
+                throw new CustomException("Exam is ready, can't update question type or difficulty");
+            }
         }
         // posibilities
         // MCQ MCQ
