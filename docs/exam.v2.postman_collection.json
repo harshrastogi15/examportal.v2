@@ -114,7 +114,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"title\": \"Java Exam\",\r\n  \"description\": \"Advanced Java concepts\",\r\n  \"instructions\": [\"Read carefully\", \"No cheating\"],\r\n  \"durationMinutes\": 62,\r\n  \"totalMarks\": 30,\r\n  \"noQuestionPerLevel\": [10, 5, 0,5],\r\n  \"startTime\": \"2025-09-01T11:00:00\",\r\n  \"endTime\": \"2025-09-01T11:00:00\",\r\n  \"easyLevelMark\": 1,\r\n  \"mediumLevelMark\": 2,\r\n  \"hardLevelMark\": 2,\r\n  \"subLevelMark\": 2\r\n}\r\n",
+							"raw": "{\r\n  \"title\": \"C++ Exam\",\r\n  \"description\": \"Advanced Java concepts\",\r\n  \"instructions\": [\"Read carefully\", \"No cheating\"],\r\n  \"durationMinutes\": 62,\r\n  \"totalMarks\": 4,\r\n  \"noQuestionPerLevel\": [1, 1, 1, 1],\r\n  \"startTime\": \"2026-09-01T11:00:00\",\r\n  \"endTime\": \"2026-09-01T11:00:00\",\r\n  \"easyLevelMark\": 1,\r\n  \"mediumLevelMark\": 1,\r\n  \"hardLevelMark\": 1,\r\n  \"subLevelMark\": 1\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -143,7 +143,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"examId\": \"a93f3080-6277-08aa-11df-2284d23c78a3\"\r\n}",
+							"raw": "{\r\n    \"examId\": \"6a1160b2-162c-03b3-3037-05f923aa5915\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -169,7 +169,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"examId\": \"dbc6b399-a61d-0492-3ffc-66b1e9dd8792\",\r\n    \"data\": {\r\n        \"title\": \"Python Exam\",\r\n        \"description\": \"Advanced Java concepts\",\r\n        \"instructions\": [\r\n            \"Read carefully\",\r\n            \"No cheating\"\r\n        ],\r\n        \"durationMinutes\": 62,\r\n        \"totalMarks\": 120,\r\n        \"noQuestionPerLevel\": [\r\n            10,\r\n            5,\r\n            0,\r\n            5\r\n        ],\r\n        \"startTime\": \"2025-09-01T11:00:00\",\r\n        \"endTime\": \"2025-09-01T11:00:00\",\r\n        \"easyLevelMark\": 10,\r\n        \"mediumLevelMark\": 2,\r\n        \"hardLevelMark\": 10,\r\n        \"subLevelMark\": 2\r\n    }\r\n}",
+							"raw": "{\r\n    \"examId\": \"6a1160b2-162c-03b3-3037-05f923aa5915\",\r\n    \"data\": {\r\n        \"title\": \"Python Exam\",\r\n        \"description\": \"Advanced Java concepts\",\r\n        \"instructions\": [\r\n            \"Read carefully\",\r\n            \"No cheating\"\r\n        ],\r\n        \"durationMinutes\": 62,\r\n        \"totalMarks\": 10,\r\n        \"noQuestionPerLevel\": [\r\n            1,\r\n            1,\r\n            1,\r\n            2\r\n        ],\r\n        \"startTime\": \"2025-09-01T11:00:00\",\r\n        \"endTime\": \"2025-09-01T11:00:00\",\r\n        \"easyLevelMark\": 1,\r\n        \"mediumLevelMark\": 2,\r\n        \"hardLevelMark\": 3,\r\n        \"subLevelMark\": 2\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -226,22 +226,25 @@
 				{
 					"name": "isExamReady",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"examId\":\"6a1160b2-162c-03b3-3037-05f923aa5915\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{HOST_URL}}/exam/ready?flag=true",
+							"raw": "{{HOST_URL}}/exam/ready",
 							"host": [
 								"{{HOST_URL}}"
 							],
 							"path": [
 								"exam",
 								"ready"
-							],
-							"query": [
-								{
-									"key": "flag",
-									"value": "true"
-								}
 							]
 						}
 					},
@@ -277,7 +280,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"examId\": \"a93f3080-6277-08aa-11df-2284d23c78a3\",\r\n    \"questionType\": \"Subjective\"\r\n}",
+							"raw": "{\r\n    \"examId\": \"6a1160b2-162c-03b3-3037-05f923aa5915\",\r\n    \"questionType\": \"Subjective\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -314,7 +317,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST_URL}}/question?id=8a8a62f6-4524-04b2-1051-caa1dd7905ca",
+							"raw": "{{HOST_URL}}/question?id=c7d57ec6-b1ef-0132-0e12-6df4fbe50f73",
 							"host": [
 								"{{HOST_URL}}"
 							],
@@ -324,7 +327,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "8a8a62f6-4524-04b2-1051-caa1dd7905ca"
+									"value": "c7d57ec6-b1ef-0132-0e12-6df4fbe50f73"
 								}
 							]
 						}
@@ -338,7 +341,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"questionId\": \"8a8a62f6-4524-04b2-1051-caa1dd7905ca\",\r\n  \"examId\": \"a93f3080-6277-08aa-11df-2284d23c78a3\",      \r\n  \"questionType\": \"Subjective\",  \r\n  \"questionText\": \"What is the capital of India?\",\r\n  \"difficulty\": \"Easy\",  \r\n  \"options\": [\"Paris\", \"London\", \"Berlin\",\"Delhi\"],\r\n  \"correctAnswer\": \"D\",  \r\n  \"suggestedAnswer\": [\"Paris\", \"London\"]  \r\n}",
+							"raw": "{\r\n  \"questionId\": \"c7d57ec6-b1ef-0132-0e12-6df4fbe50f73\",\r\n  \"examId\": \"6a1160b2-162c-03b3-3037-05f923aa5915\",      \r\n  \"questionType\": \"MCQ\",  \r\n  \"questionText\": \"What is the capital of India?\",\r\n  \"difficulty\": \"Easy\",  \r\n  \"options\": [\"Paris\", \"London\", \"Berlin\",\"Delhi\"],\r\n  \"correctAnswer\": \"D\",  \r\n  \"suggestedAnswer\": [\"Paris\", \"London\"]  \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -530,14 +533,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST_URL}}/assign/exam/user",
+							"raw": "{{HOST_URL}}/assign/exam",
 							"host": [
 								"{{HOST_URL}}"
 							],
 							"path": [
 								"assign",
-								"exam",
-								"user"
+								"exam"
 							]
 						}
 					},
@@ -549,18 +551,92 @@
 			"name": "userAttempt",
 			"item": [
 				{
-					"name": "StartExam",
+					"name": "Attempt - Start exam",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"assignmentId\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{HOST_URL}}/attempt/start",
+							"raw": "{{HOST_URL}}/attempt/",
 							"host": [
 								"{{HOST_URL}}"
 							],
 							"path": [
 								"attempt",
-								"start"
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fetch question",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_URL}}/attempt/question?assignmentId=&userquestionId=",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"attempt",
+								"question"
+							],
+							"query": [
+								{
+									"key": "assignmentId",
+									"value": ""
+								},
+								{
+									"key": "userquestionId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store answer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"option\":\"\",\r\n    \"text\":\"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST_URL}}/attempt/answer?assignmentId=&userquestionId=",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"attempt",
+								"answer"
+							],
+							"query": [
+								{
+									"key": "assignmentId",
+									"value": ""
+								},
+								{
+									"key": "userquestionId",
+									"value": ""
+								}
 							]
 						}
 					},
@@ -572,18 +648,27 @@
 			"name": "generateResult",
 			"item": [
 				{
-					"name": "generateResult-MCQ",
+					"name": "calculateResult-MCQ",
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"assignmentId\":\"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{HOST_URL}}/generate/result/mcq",
+							"raw": "{{HOST_URL}}/result/calculate/mcq",
 							"host": [
 								"{{HOST_URL}}"
 							],
 							"path": [
-								"generate",
 								"result",
+								"calculate",
 								"mcq"
 							]
 						}
@@ -595,14 +680,23 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"assignmentId\":\"\",\r\n    \"questionId\":\"\",\r\n    \"mark\":\"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{HOST_URL}}/generate/result/subjective",
+							"raw": "{{HOST_URL}}/result/calculate/subjective",
 							"host": [
 								"{{HOST_URL}}"
 							],
 							"path": [
-								"generate",
 								"result",
+								"calculate",
 								"subjective"
 							]
 						}
@@ -614,14 +708,23 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"assignmentId\":\"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{HOST_URL}}/generate/result",
+							"raw": "{{HOST_URL}}/result/generate",
 							"host": [
 								"{{HOST_URL}}"
 							],
 							"path": [
-								"generate",
-								"result"
+								"result",
+								"generate"
 							]
 						}
 					},
@@ -638,12 +741,18 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{HOST_URL}}/result",
+							"raw": "{{HOST_URL}}/result?assignmentId=",
 							"host": [
 								"{{HOST_URL}}"
 							],
 							"path": [
 								"result"
+							],
+							"query": [
+								{
+									"key": "assignmentId",
+									"value": ""
+								}
 							]
 						}
 					},
