@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
                 .map(u -> {
                     ReadUserDto user = mapper.map(u, ReadUserDto.class);
                     UUID encodedId = idEncoder.encodeId(u.getId(),customUserPrincipal.getId());
-                    user.setEncodedId(encodedId);
+                    user.setStudentId(encodedId);
                     return user;
                 })
                 .collect(Collectors.toList());
@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService {
         UUID realId = idEncoder.decodeId(studentId,userId.getId());
         User user = userRepository.findById(realId).orElseThrow();
         ReadUserDto readUserDto = mapper.map(user,ReadUserDto.class);
-        readUserDto.setEncodedId(idEncoder.encodeId(realId,userId.getId()));
+        readUserDto.setStudentId(idEncoder.encodeId(realId,userId.getId()));
         return readUserDto;
     }
 

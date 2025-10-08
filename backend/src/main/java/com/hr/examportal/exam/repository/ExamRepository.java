@@ -36,5 +36,5 @@ public interface ExamRepository extends JpaRepository<Exam, UUID> {
     Optional<Exam> findByIdAndCreatorId(UUID examId, UUID creatorId);
 
     @Query(value = "SELECT e.is_ready FROM exam e WHERE e.id=:examId", nativeQuery = true)
-    boolean isExamReady(UUID examId);
+    Optional<Boolean> isExamReady(UUID examId);
 }

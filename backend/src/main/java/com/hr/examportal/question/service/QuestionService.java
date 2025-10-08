@@ -153,7 +153,8 @@ public class QuestionService {
         if(!question.getExamId().equals(dto.getExamId())){
             throw new CustomException("Invalid data");
         }
-        if(examRepository.isExamReady(question.getExamId())){
+        if(examRepository.isExamReady(question.getExamId()).orElseThrow(()->
+                new CustomException("Exam is not found"))){
             if(!question.getQuestionType().equals(dto.getQuestionType()) || !question.getDifficulty().equals(dto.getDifficulty())){
                 throw new CustomException("Exam is ready, can't update question type or difficulty");
             }

@@ -10,7 +10,12 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 
     User findByEmail(String email);
 
-    @Query("SELECT u FROM User u WHERE u.role = :roleName")
+    @Query(value = "SELECT * FROM users u WHERE u.role = (:roleName)::user_role_enum",nativeQuery = true)
     List<User> findAllByRoleName(String roleName);
+
+    @Query(value = "SELECT EXISTS (" +
+            "    SELECT 1 FROM users WHERE id = :userId" +
+            ")", nativeQuery = true)
+    Optional<Boolean> isUserPresent(UUID userId);
 }
 
