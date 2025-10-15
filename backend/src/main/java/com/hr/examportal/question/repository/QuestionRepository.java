@@ -51,4 +51,8 @@ public interface QuestionRepository extends JpaRepository<Question, UUID> {
 
     @Query(value = "SELECT COUNT(*) FROM question q WHERE q.exam_id=:examId AND q.difficulty= (:level)::difficulty_level_enum;", nativeQuery = true)
     Integer countQuestionByExamIdAndDifficulty(UUID examId, String level);
+
+
+    @Query(value = "SELECT id FROM question q WHERE q.exam_id=:examId AND q.difficulty= (:level)::difficulty_level_enum;", nativeQuery = true)
+    List<UUID> findByExamIdAndDifficulty(UUID examId, String level);
 }

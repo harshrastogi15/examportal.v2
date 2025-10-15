@@ -28,7 +28,7 @@ public class UserInfoFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         System.out.println("In Filter, ");
 
-        String email = "john.doe@example.com";
+        String email = "jane.smith@student.com";
         User user = userRepository.findByEmail(email);
 
         CustomUserPrincipal customUserPrincipal = new CustomUserPrincipal(user.getId(),user.getEmail());
