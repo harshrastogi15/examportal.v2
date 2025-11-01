@@ -55,4 +55,29 @@ public interface QuestionRepository extends JpaRepository<Question, UUID> {
 
     @Query(value = "SELECT id FROM question q WHERE q.exam_id=:examId AND q.difficulty= (:level)::difficulty_level_enum;", nativeQuery = true)
     List<UUID> findByExamIdAndDifficulty(UUID examId, String level);
+
+    @Query(value = """ 
+            WITH opt as (
+            SELECT
+            ARRAY[
+            (SELECT option FROM question_option WHERE question_id = :questionId AND option_label = 'A'),
+            (SELECT option FROM question_option WHERE question_id = :questionId AND option_label = 'B'),
+            (SELECT option FROM question_option WHERE question_id = :questionId AND option_label = 'C'),
+            (SELECT option FROM question_option WHERE question_id = :questionId AND option_label = 'D')
+            ] AS option_values,
+            ARRAY[
+        (SELECT image_url FROM question_option WHERE question_id = :questionId AND option_label = 'A'),
+            (SELECT image_url FROM question_option WHERE question_id = :questionId AND option_label = 'B'),
+            (SELECT image_url FROM question_option WHERE question_id = :questionId AND option_label = 'C'),
+            (SELECT image_url FROM question_option WHERE question_id = :questionId AND option_label = 'D')
+            ] AS option_urls
+)
+    SELECT q.question_type, q.question_text, q.question_image_url, q.difficulty,
+            (SELECT option_values from opt),
+            (SELECT option_urls from opt)
+    FROM question q
+    JOIN exam e ON q.exam_id = e.id
+    WHERE q.id = :questionId;
+    """, nativeQuery = true)
+    List<Object[]> findQuestionDetailsForStudentById(UUID questionId);
 }

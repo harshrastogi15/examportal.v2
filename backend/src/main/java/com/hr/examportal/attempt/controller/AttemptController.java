@@ -2,6 +2,7 @@ package com.hr.examportal.attempt.controller;
 
 import com.hr.examportal.attempt.service.AttemptService;
 import com.hr.examportal.exception.CustomException;
+import com.hr.examportal.question.dto.ReadQuestionStudent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,8 +29,8 @@ public class AttemptController {
         return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build();
     }
     @GetMapping("/question")
-    public ResponseEntity<Void> getUserQuestion(){
-        return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build();
+    public ResponseEntity<ReadQuestionStudent> getUserQuestion(@RequestParam UUID assignmentId, @RequestParam UUID userQuestionId){
+        return ResponseEntity.ok(attemptService.getQuestion(assignmentId,userQuestionId));
     }
 
 
