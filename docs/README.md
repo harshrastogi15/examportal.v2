@@ -20,6 +20,14 @@
 docker run -p 9000:9000 -p 9001:9001 --name minio -e "MINIO_ROOT_USER=minioadmin" -e "MINIO_ROOT_PASSWORD=minioadmin" quay.io/minio/minio server /data --console-address ":9001"
 ```
 
+## keylock Setup:
+
+```
+docker pull quay.io/keycloak/keycloak:latest
+
+docker run --name keycloak -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:latest start-dev
+```
+
 ## 📖 API Documentation
 
 All backend API endpoints (Users, Exams, Questions, Assignments, Attempts, Results) are documented in:
