@@ -1,11 +1,13 @@
 package com.hr.examportal.security;
 
+import com.hr.examportal.exception.CustomException;
 import com.hr.examportal.filter.entity.CustomUserPrincipal;
 import com.hr.examportal.user.entity.User;
 import com.hr.examportal.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -37,6 +39,7 @@ public class JwtAuthConverter implements Converter<Jwt, AbstractAuthenticationTo
         Optional<User> maybeUser = Optional.empty();
         if (email != null && !email.isBlank()) {
             try {
+                System.out.println(email);
                 maybeUser = Optional.ofNullable(userRepository.findByEmail(email));
             } catch (Exception e) {
                 maybeUser = Optional.empty();
@@ -55,6 +58,7 @@ public class JwtAuthConverter implements Converter<Jwt, AbstractAuthenticationTo
             String name = (email != null) ? email : jwt.getSubject();
             principal = new CustomUserPrincipal(null, name);
             authorities = List.of(); // no roles
+//            throw new CustomException("User not found",HttpStatus.NOT_FOUND);
         }
 
         UsernamePasswordAuthenticationToken auth =

@@ -2,9 +2,11 @@ package com.hr.examportal.auth.controller;
 
 import com.hr.examportal.auth.dto.TokenResponse;
 import com.hr.examportal.auth.service.KeycloakAuthService;
+import com.hr.examportal.exception.CustomException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,13 +23,13 @@ public class AuthController {
     public ResponseEntity<Void> login(HttpServletRequest request) {
         String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
         if (authHeader == null || !authHeader.startsWith("OneTime ")) {
-            return ResponseEntity.badRequest().build();
+            throw new CustomException("UNAUTHORIZED", HttpStatus.UNAUTHORIZED);
         }
         String code = authHeader.substring("OneTime ".length()).trim();
         TokenResponse tokens = keycloakAuthService.exchangeCodeForTokens(code);
 
         if (tokens == null || tokens.getAccess_token() == null) {
-            return ResponseEntity.status(502).build();
+            throw new CustomException("UNAUTHORIZED", HttpStatus.UNAUTHORIZED);
         }
 
         ResponseCookie accessCookie = ResponseCookie.from("ACCESS_TOKEN", tokens.getAccess_token())

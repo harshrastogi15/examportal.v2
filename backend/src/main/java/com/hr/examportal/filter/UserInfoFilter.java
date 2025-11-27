@@ -20,15 +20,15 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.*;
 
-@Component
+//@Component
 @RequiredArgsConstructor
 public class UserInfoFilter extends OncePerRequestFilter {
     private final UserRepository userRepository;
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         System.out.println("In Filter, ");
-
-        String email = "jane.smith@student.com";
+        System.out.println("DEPRICATED FILTER");
+        String email = "john.doe@example.com";
         User user = userRepository.findByEmail(email);
 
         CustomUserPrincipal customUserPrincipal = new CustomUserPrincipal(user.getId(),user.getEmail());

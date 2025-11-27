@@ -1,12 +1,14 @@
 package com.hr.examportal.auth.service;
 
 import com.hr.examportal.auth.dto.TokenResponse;
+import com.hr.examportal.exception.CustomException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 @Service
@@ -41,8 +43,17 @@ public class KeycloakAuthService {
 
         HttpEntity<MultiValueMap<String,String>> entity = new HttpEntity<>(form, headers);
 
-        ResponseEntity<TokenResponse> response = restTemplate.exchange(tokenUri, HttpMethod.POST, entity, TokenResponse.class);
-        return response.getBody();
+//        ResponseEntity<TokenResponse> response = restTemplate.exchange(tokenUri, HttpMethod.POST, entity, TokenResponse.class);
+
+        try {
+            ResponseEntity<TokenResponse> response = restTemplate.exchange(tokenUri, HttpMethod.POST, entity, TokenResponse.class);
+            return response.getBody();
+        } catch (HttpClientErrorException ex) {
+            String body = ex.getResponseBodyAsString();
+            throw new CustomException("NOT AUTHENTICATED", HttpStatus.UNAUTHORIZED);
+        } catch (Exception ex) {
+            throw new CustomException("Unexpected error", HttpStatus.SERVICE_UNAVAILABLE);
+        }
     }
 
     public TokenResponse refreshTokens(String refreshToken) {
