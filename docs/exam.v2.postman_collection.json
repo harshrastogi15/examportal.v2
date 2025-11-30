@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "51048fe4-47f7-42cd-88e0-16c50fc53ccd",
 		"name": "exam.v2",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "24989130"
 	},
 	"item": [
@@ -14,16 +14,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{HOST_URL}}/user/detail",
-							"host": [
-								"{{HOST_URL}}"
-							],
-							"path": [
-								"user",
-								"detail"
-							]
-						}
+						"url": "{{HOST_URL}}/user/detail"
 					},
 					"response": []
 				},
@@ -32,16 +23,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{HOST_URL}}/user/students",
-							"host": [
-								"{{HOST_URL}}"
-							],
-							"path": [
-								"user",
-								"students"
-							]
-						}
+						"url": "{{HOST_URL}}/user/students"
 					},
 					"response": []
 				},
@@ -62,17 +44,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{HOST_URL}}/user/student/detail",
-							"host": [
-								"{{HOST_URL}}"
-							],
-							"path": [
-								"user",
-								"student",
-								"detail"
-							]
-						}
+						"url": "{{HOST_URL}}/user/student/detail"
 					},
 					"response": []
 				},
@@ -90,15 +62,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{HOST_URL}}/user",
-							"host": [
-								"{{HOST_URL}}"
-							],
-							"path": [
-								"user"
-							]
-						}
+						"url": "{{HOST_URL}}/user"
 					},
 					"response": []
 				}
@@ -121,15 +85,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{HOST_URL}}/exam",
-							"host": [
-								"{{HOST_URL}}"
-							],
-							"path": [
-								"exam"
-							]
-						}
+						"url": "{{HOST_URL}}/exam"
 					},
 					"response": []
 				},
@@ -150,15 +106,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{HOST_URL}}/exam",
-							"host": [
-								"{{HOST_URL}}"
-							],
-							"path": [
-								"exam"
-							]
-						}
+						"url": "{{HOST_URL}}/exam"
 					},
 					"response": []
 				},
@@ -176,15 +124,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{HOST_URL}}/exam",
-							"host": [
-								"{{HOST_URL}}"
-							],
-							"path": [
-								"exam"
-							]
-						}
+						"url": "{{HOST_URL}}/exam"
 					},
 					"response": []
 				},
@@ -193,15 +133,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": {
-							"raw": "{{HOST_URL}}/exam",
-							"host": [
-								"{{HOST_URL}}"
-							],
-							"path": [
-								"exam"
-							]
-						}
+						"url": "{{HOST_URL}}/exam"
 					},
 					"response": []
 				},
@@ -210,16 +142,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{HOST_URL}}/exam/all",
-							"host": [
-								"{{HOST_URL}}"
-							],
-							"path": [
-								"exam",
-								"all"
-							]
-						}
+						"url": "{{HOST_URL}}/exam/all"
 					},
 					"response": []
 				},
@@ -237,16 +160,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{HOST_URL}}/exam/ready",
-							"host": [
-								"{{HOST_URL}}"
-							],
-							"path": [
-								"exam",
-								"ready"
-							]
-						}
+						"url": "{{HOST_URL}}/exam/ready"
 					},
 					"response": []
 				},
@@ -255,16 +169,7 @@
 					"request": {
 						"method": "POST",
 						"header": [],
-						"url": {
-							"raw": "{{HOST_URL}}/exam/copy",
-							"host": [
-								"{{HOST_URL}}"
-							],
-							"path": [
-								"exam",
-								"copy"
-							]
-						}
+						"url": "{{HOST_URL}}/exam/copy"
 					},
 					"response": []
 				}
@@ -287,15 +192,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{HOST_URL}}/question",
-							"host": [
-								"{{HOST_URL}}"
-							],
-							"path": [
-								"question"
-							]
-						}
+						"url": "{{HOST_URL}}/question"
 					},
 					"response": []
 				},
@@ -317,7 +214,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST_URL}}/question?id=c7d57ec6-b1ef-0132-0e12-6df4fbe50f73",
+							"raw": "{{HOST_URL}}/question?id=e2a0b4bb-22b3-064e-2be1-9f416a411ea3",
 							"host": [
 								"{{HOST_URL}}"
 							],
@@ -327,7 +224,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "c7d57ec6-b1ef-0132-0e12-6df4fbe50f73"
+									"value": "e2a0b4bb-22b3-064e-2be1-9f416a411ea3"
 								}
 							]
 						}
@@ -348,15 +245,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{HOST_URL}}/question",
-							"host": [
-								"{{HOST_URL}}"
-							],
-							"path": [
-								"question"
-							]
-						}
+						"url": "{{HOST_URL}}/question"
 					},
 					"response": []
 				},
@@ -365,15 +254,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": {
-							"raw": "{{HOST_URL}}/question",
-							"host": [
-								"{{HOST_URL}}"
-							],
-							"path": [
-								"question"
-							]
-						}
+						"url": "{{HOST_URL}}/question"
 					},
 					"response": []
 				},
@@ -382,16 +263,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{HOST_URL}}/question/all",
-							"host": [
-								"{{HOST_URL}}"
-							],
-							"path": [
-								"question",
-								"all"
-							]
-						}
+						"url": "{{HOST_URL}}/question/all"
 					},
 					"response": []
 				},
@@ -423,15 +295,7 @@
 								}
 							]
 						},
-						"url": {
-							"raw": "{{HOST_URL}}/image",
-							"host": [
-								"{{HOST_URL}}"
-							],
-							"path": [
-								"image"
-							]
-						}
+						"url": "{{HOST_URL}}/image"
 					},
 					"response": []
 				},
@@ -449,15 +313,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{HOST_URL}}/image",
-							"host": [
-								"{{HOST_URL}}"
-							],
-							"path": [
-								"image"
-							]
-						}
+						"url": "{{HOST_URL}}/image"
 					},
 					"response": []
 				},
@@ -473,16 +329,7 @@
 								"disabled": true
 							}
 						],
-						"url": {
-							"raw": "{{HOST_URL}}/image/eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ7XCJsb2NhdGlvblR5cGVcIjpcIlF1ZXN0aW9uXCIsXCJxdWVzdGlvbklkXCI6XCI3MjU5Y2Y1My04MDk1LTA0NGEtMWU3NS0yMmM2MDMzNDVjZTBcIixcImV4YW1JZFwiOlwiYTkzZjMwODAtNjI3Ny0wOGFhLTExZGYtMjI4NGQyM2M3OGEzXCIsXCJsb2NhdGlvblwiOlwiUXVlc3Rpb24vaW1nLnBuZ1wifSIsImV4cCI6MTc1NjY0NjQwNn0.xvoWmaSzb_E5gjATFsCpNaiDyjHBcB551hszdmrp1ok",
-							"host": [
-								"{{HOST_URL}}"
-							],
-							"path": [
-								"image",
-								"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ7XCJsb2NhdGlvblR5cGVcIjpcIlF1ZXN0aW9uXCIsXCJxdWVzdGlvbklkXCI6XCI3MjU5Y2Y1My04MDk1LTA0NGEtMWU3NS0yMmM2MDMzNDVjZTBcIixcImV4YW1JZFwiOlwiYTkzZjMwODAtNjI3Ny0wOGFhLTExZGYtMjI4NGQyM2M3OGEzXCIsXCJsb2NhdGlvblwiOlwiUXVlc3Rpb24vaW1nLnBuZ1wifSIsImV4cCI6MTc1NjY0NjQwNn0.xvoWmaSzb_E5gjATFsCpNaiDyjHBcB551hszdmrp1ok"
-							]
-						}
+						"url": "{{HOST_URL}}/image/eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ7XCJsb2NhdGlvblR5cGVcIjpcIlF1ZXN0aW9uXCIsXCJxdWVzdGlvbklkXCI6XCI3MjU5Y2Y1My04MDk1LTA0NGEtMWU3NS0yMmM2MDMzNDVjZTBcIixcImV4YW1JZFwiOlwiYTkzZjMwODAtNjI3Ny0wOGFhLTExZGYtMjI4NGQyM2M3OGEzXCIsXCJsb2NhdGlvblwiOlwiUXVlc3Rpb24vaW1nLnBuZ1wifSIsImV4cCI6MTc1NjY0NjQwNn0.xvoWmaSzb_E5gjATFsCpNaiDyjHBcB551hszdmrp1ok"
 					},
 					"response": []
 				}
@@ -498,7 +345,37 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"examId\":\"\",\r\n    \"studentId\":\"\"\r\n}",
+							"raw": "{\r\n    \"examId\":\"6a1160b2-162c-03b3-3037-05f923aa5915\",\r\n    \"studentId\":\"25f41dbe-78b9-06c3-1503-59db390fb657\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{HOST_URL}}/assign/exam"
+					},
+					"response": []
+				},
+				{
+					"name": "getAllAssignment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{HOST_URL}}/assign/all"
+					},
+					"response": []
+				},
+				{
+					"name": "getAllUsersAssigned",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"examId\":\"6a1160b2-162c-03b3-3037-05f923aa5915\",\r\n    \"studentId\":\"25f41dbe-78b9-06c3-1503-59db390fb657\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -506,13 +383,19 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST_URL}}/assign/exam",
+							"raw": "{{HOST_URL}}/assign/user?examId=6a1160b2-162c-03b3-3037-05f923aa5915",
 							"host": [
 								"{{HOST_URL}}"
 							],
 							"path": [
 								"assign",
-								"exam"
+								"user"
+							],
+							"query": [
+								{
+									"key": "examId",
+									"value": "6a1160b2-162c-03b3-3037-05f923aa5915"
+								}
 							]
 						}
 					},
@@ -525,23 +408,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"examId\":\"\",\r\n    \"studentId\":\"\"\r\n}",
+							"raw": "{\r\n    \"examId\":\"6a1160b2-162c-03b3-3037-05f923aa5915\",\r\n    \"studentId\":\"25f41dbe-78b9-06c3-1503-59db390fb657\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "{{HOST_URL}}/assign/exam",
-							"host": [
-								"{{HOST_URL}}"
-							],
-							"path": [
-								"assign",
-								"exam"
-							]
-						}
+						"url": "{{HOST_URL}}/assign/exam"
 					},
 					"response": []
 				}
@@ -555,23 +429,19 @@
 					"request": {
 						"method": "POST",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"assignmentId\": \"\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "{{HOST_URL}}/attempt/",
+							"raw": "{{HOST_URL}}/attempt?assignmentId=903dd20a-eaec-0a53-2675-7f9061da4d63",
 							"host": [
 								"{{HOST_URL}}"
 							],
 							"path": [
-								"attempt",
-								""
+								"attempt"
+							],
+							"query": [
+								{
+									"key": "assignmentId",
+									"value": "903dd20a-eaec-0a53-2675-7f9061da4d63"
+								}
 							]
 						}
 					},
@@ -583,7 +453,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{HOST_URL}}/attempt/question?assignmentId=&userquestionId=",
+							"raw": "{{HOST_URL}}/attempt/question?assignmentId=903dd20a-eaec-0a53-2675-7f9061da4d63&userQuestionId=97bf8fb6-e1bc-09d0-3bcc-7c6067651ce4",
 							"host": [
 								"{{HOST_URL}}"
 							],
@@ -594,11 +464,11 @@
 							"query": [
 								{
 									"key": "assignmentId",
-									"value": ""
+									"value": "903dd20a-eaec-0a53-2675-7f9061da4d63"
 								},
 								{
-									"key": "userquestionId",
-									"value": ""
+									"key": "userQuestionId",
+									"value": "97bf8fb6-e1bc-09d0-3bcc-7c6067651ce4"
 								}
 							]
 						}
@@ -620,7 +490,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST_URL}}/attempt/answer?assignmentId=&userquestionId=",
+							"raw": "{{HOST_URL}}/attempt/answer?assignmentId=903dd20a-eaec-0a53-2675-7f9061da4d63&userQuestionId=97bf8fb6-e1bc-09d0-3bcc-7c6067651ce4",
 							"host": [
 								"{{HOST_URL}}"
 							],
@@ -631,11 +501,11 @@
 							"query": [
 								{
 									"key": "assignmentId",
-									"value": ""
+									"value": "903dd20a-eaec-0a53-2675-7f9061da4d63"
 								},
 								{
-									"key": "userquestionId",
-									"value": ""
+									"key": "userQuestionId",
+									"value": "97bf8fb6-e1bc-09d0-3bcc-7c6067651ce4"
 								}
 							]
 						}
@@ -661,17 +531,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{HOST_URL}}/result/calculate/mcq",
-							"host": [
-								"{{HOST_URL}}"
-							],
-							"path": [
-								"result",
-								"calculate",
-								"mcq"
-							]
-						}
+						"url": "{{HOST_URL}}/result/calculate/mcq"
 					},
 					"response": []
 				},
@@ -689,17 +549,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{HOST_URL}}/result/calculate/subjective",
-							"host": [
-								"{{HOST_URL}}"
-							],
-							"path": [
-								"result",
-								"calculate",
-								"subjective"
-							]
-						}
+						"url": "{{HOST_URL}}/result/calculate/subjective"
 					},
 					"response": []
 				},
@@ -717,16 +567,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{HOST_URL}}/result/generate",
-							"host": [
-								"{{HOST_URL}}"
-							],
-							"path": [
-								"result",
-								"generate"
-							]
-						}
+						"url": "{{HOST_URL}}/result/generate"
 					},
 					"response": []
 				}
@@ -755,6 +596,115 @@
 								}
 							]
 						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "keycloak",
+			"item": [
+				{
+					"name": "keylockFrontendLogin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/realms/exam-portal/protocol/openid-connect/auth?client_id=exam-portal-frontend&response_type=code&scope=openid&redirect_uri=http://localhost:3000/login/callback",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"realms",
+								"exam-portal",
+								"protocol",
+								"openid-connect",
+								"auth"
+							],
+							"query": [
+								{
+									"key": "client_id",
+									"value": "exam-portal-frontend"
+								},
+								{
+									"key": "response_type",
+									"value": "code"
+								},
+								{
+									"key": "scope",
+									"value": "openid"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:3000/login/callback"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "keylockFrontendLogout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/realms/exam-portal/protocol/openid-connect/logout?client_id=exam-portal-frontend&post_logout_redirect_uri=http://localhost:3000/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"realms",
+								"exam-portal",
+								"protocol",
+								"openid-connect",
+								"logout"
+							],
+							"query": [
+								{
+									"key": "client_id",
+									"value": "exam-portal-frontend"
+								},
+								{
+									"key": "post_logout_redirect_uri",
+									"value": "http://localhost:3000/logout"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "OneTime 6fdd8e1d-26b1-4668-396c-9df2e5013c83.cec87aa9-8db3-b72f-0345-ad6824dc4f3b.723cdc4d-cc53-423c-bbaa-bbfdce85b19b",
+								"type": "text"
+							}
+						],
+						"url": "{{HOST_URL}}/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "refresh",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "OneTime 6cbde3f4-7ec1-5724-4061-67735502745b.6f1179ce-af2e-fd34-5457-35f834c4de8e.723cdc4d-cc53-423c-bbaa-bbfdce85b19b",
+								"type": "text"
+							}
+						],
+						"url": "{{HOST_URL}}/auth/refresh"
 					},
 					"response": []
 				}

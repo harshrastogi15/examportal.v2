@@ -53,6 +53,16 @@
 
 - `GET /result?assignmentId={id}` – Fetch result for a specific assignment
 
+### 8. **Auth / Keycloak**
+
+- `GET http://localhost:8080/realms/exam-portal/protocol/openid-connect/auth?client_id=exam-portal-frontend&response_type=code&scope=openid&redirect_uri=http://localhost:3000/login/callback` - Frontend login redirect (Keycloak)
+
+- `GET http://localhost:8080/realms/exam-portal/protocol/openid-connect/logout?client_id=exam-portal-frontend&post_logout_redirect_uri=http://localhost:3000/logout` - Frontend logout redirect:
+
+- `POST /auth/login` - Backend login using one time code using keycloak
+
+- `POST /auth/refresh`- refresh access token
+
 ## 📦 Postman Collection
 
 For detailed request/response payloads, import the Postman collections:
