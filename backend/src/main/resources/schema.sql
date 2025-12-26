@@ -100,5 +100,5 @@ CREATE TABLE IF NOT EXISTS student_answer (
     subjective_answer TEXT,
     mode mode_enum,
     submitted_at TIMESTAMP NOT NULL,
-    CONSTRAINT uq_submission_option UNIQUE (submission_id, selected_option)
+    CONSTRAINT uq_submission UNIQUE (submission_id)
 );

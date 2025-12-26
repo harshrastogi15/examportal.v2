@@ -1,30 +1,28 @@
 package com.hr.examportal.attempt.service;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.hr.examportal.assignment.entity.StudentAnswer;
 import com.hr.examportal.assignment.entity.StudentExamAssigned;
 import com.hr.examportal.assignment.entity.StudentExamQuestion;
 import com.hr.examportal.assignment.repository.ExamAssignRepository;
 import com.hr.examportal.assignment.repository.QuestionAssignRepository;
+import com.hr.examportal.assignment.repository.StudentAnswerRepository;
 import com.hr.examportal.exam.entity.Exam;
 import com.hr.examportal.exam.repository.ExamRepository;
 import com.hr.examportal.exception.CustomException;
 import com.hr.examportal.image.dto.FileMetadata;
-import com.hr.examportal.question.dto.ReadQuestionInstructor;
 import com.hr.examportal.question.dto.ReadQuestionStudent;
 import com.hr.examportal.question.repository.QuestionRepository;
 import com.hr.examportal.utils.IdEncoder;
 import com.hr.examportal.utils.ImageUrlGenerator;
 import com.hr.examportal.utils.TokenUtil;
 import com.hr.examportal.utils.UserId;
-import com.hr.examportal.utils.enums.AnswerOption;
-import com.hr.examportal.utils.enums.DifficultyLevel;
-import com.hr.examportal.utils.enums.QuestionType;
-import com.hr.examportal.utils.enums.StatusStage;
+import com.hr.examportal.utils.enums.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -35,6 +33,7 @@ import java.util.*;
 public class AttemptService {
     private final ExamAssignRepository examAssignRepository;
     private final QuestionAssignRepository questionAssignRepository;
+    private final StudentAnswerRepository studentAnswerRepository;
     private final ExamRepository examRepository;
     private final QuestionRepository questionRepository;
     private final IdEncoder idEncoder;
@@ -191,7 +190,8 @@ public class AttemptService {
 
 
     public ReadQuestionStudent getQuestion(UUID assignmentId, UUID userQuestionId) {
-        StudentExamAssigned studentExamAssigned = examAssignRepository.findById(assignmentId).orElseThrow(
+
+        StudentExamAssigned studentExamAssigned = examAssignRepository.findById(idEncoder.decodeId(assignmentId,userId.getId())).orElseThrow(
                 ()-> new CustomException("NOT Performed", HttpStatus.NOT_FOUND)
         );
         if(!studentExamAssigned.getStudentId().equals(userId.getId())){
@@ -205,5 +205,32 @@ public class AttemptService {
         UUID questionId = questionAssignRepository.findQuestionIdByExamAssignedIdAndId(idEncoder.decodeId(assignmentId,userId.getId()),idEncoder.decodeId(userQuestionId,userId.getId()))
                 .orElseThrow(()-> new CustomException("invalid ids"));
         return getQuestionDetailsInternal(questionId,assignmentId,userQuestionId);
+    }
+
+    public Map<String,Object> storeAnswer(UUID assignmentId, UUID userQuestionId, JsonNode json) {
+
+        StudentExamAssigned studentExamAssigned = examAssignRepository.findById(idEncoder.decodeId(assignmentId,userId.getId())).orElseThrow(
+                ()-> new CustomException("NOT Performed", HttpStatus.NOT_FOUND)
+        );
+        if(!studentExamAssigned.getStudentId().equals(userId.getId())){
+            throw new CustomException("NOT Authorized", HttpStatus.UNAUTHORIZED);
+        }
+
+        if(!isExamSessionValid(studentExamAssigned)){
+            throw new CustomException("Invalid session",HttpStatus.BAD_REQUEST);
+        }
+
+
+        UUID decodedUserQuestionId = idEncoder.decodeId(userQuestionId,userId.getId());
+        Optional<StudentAnswer> existingOpt = studentAnswerRepository.findBySubmissionId(decodedUserQuestionId);
+        StudentAnswer studentAnswer = existingOpt.orElseGet(StudentAnswer::new);
+
+        studentAnswer.setSubmissionId(decodedUserQuestionId);
+        studentAnswer.setMode(AnswerSelection.valueOf(json.get("selection").asText()));
+        studentAnswer.setSelectedOption(AnswerOption.valueOf(json.get("option").asText()));
+        studentAnswer.setSubjectiveAnswer(json.get("text").asText());
+
+        studentAnswerRepository.save(studentAnswer);
+        return Map.of("status","success");
     }
 }
