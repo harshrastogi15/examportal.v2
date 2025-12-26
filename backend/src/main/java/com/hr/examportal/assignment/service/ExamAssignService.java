@@ -72,6 +72,7 @@ public class ExamAssignService {
         for (StudentExamAssigned assignment : examAssignedList) {
             Map<String, Object> resultMap = new HashMap<>();
             resultMap.put("studentId", idEncoder.encodeId(assignment.getStudentId(),userId.getId()));
+            resultMap.put("assignmentId", idEncoder.encodeId(assignment.getId(),userId.getId()));
             resultMap.put("examId", idEncoder.encodeId(assignment.getExamId(),userId.getId()));
             resultMap.put("status", assignment.getStatus());
             resultMap.put("score", assignment.getScore());
