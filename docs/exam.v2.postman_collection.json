@@ -214,7 +214,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST_URL}}/question?id=e2a0b4bb-22b3-064e-2be1-9f416a411ea3",
+							"raw": "{{HOST_URL}}/question?id=eedc45d9-3165-092f-0c2b-9812ad1e1c85",
 							"host": [
 								"{{HOST_URL}}"
 							],
@@ -224,7 +224,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "e2a0b4bb-22b3-064e-2be1-9f416a411ea3"
+									"value": "eedc45d9-3165-092f-0c2b-9812ad1e1c85"
 								}
 							]
 						}
@@ -285,11 +285,11 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/C:/Users/harsh/OneDrive/Pictures/Screenshots/Screenshot 2025-05-18 194818.png"
+									"src": "/D:/Clubs/Webverse/Github/examportal.v2/examportal.v2/docs/classdiagram.png"
 								},
 								{
 									"key": "metadata",
-									"value": "{\"questionId\": \"8a8a62f6-4524-04b2-1051-caa1dd7905ca\", \"locationType\": \"OptionA\"}",
+									"value": "{\"questionId\": \"eedc45d9-3165-092f-0c2b-9812ad1e1c85\", \"locationType\": \"Question\"}",
 									"description": "{\"folderPath\": \"users/123\", \"description\": \"Profile picture\", \"createdBy\": \"Harsh\"}",
 									"type": "text"
 								}
@@ -329,7 +329,7 @@
 								"disabled": true
 							}
 						],
-						"url": "{{HOST_URL}}/image/eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ7XCJsb2NhdGlvblR5cGVcIjpcIlF1ZXN0aW9uXCIsXCJxdWVzdGlvbklkXCI6XCI3MjU5Y2Y1My04MDk1LTA0NGEtMWU3NS0yMmM2MDMzNDVjZTBcIixcImV4YW1JZFwiOlwiYTkzZjMwODAtNjI3Ny0wOGFhLTExZGYtMjI4NGQyM2M3OGEzXCIsXCJsb2NhdGlvblwiOlwiUXVlc3Rpb24vaW1nLnBuZ1wifSIsImV4cCI6MTc1NjY0NjQwNn0.xvoWmaSzb_E5gjATFsCpNaiDyjHBcB551hszdmrp1ok"
+						"url": "{{HOST_URL}}/image/eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ7XCJsb2NhdGlvblR5cGVcIjpcIlF1ZXN0aW9uXCIsXCJxdWVzdGlvbklkXCI6XCJlZWRjNDVkOS0zMTY1LTA5MmYtMGMyYi05ODEyYWQxZTFjODVcIixcImV4YW1JZFwiOlwiNmExMTYwYjItMTYyYy0wM2IzLTMwMzctMDVmOTIzYWE1OTE1XCIsXCJsb2NhdGlvblwiOlwiUXVlc3Rpb24vaW1nLnBuZ1wifSIsImV4cCI6MTc2NDQ5NTExMX0.NNqdJRjUpQgahMCo4Nk42BZqukQyD0CGhru8COfFfb8"
 					},
 					"response": []
 				}
@@ -453,7 +453,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{HOST_URL}}/attempt/question?assignmentId=903dd20a-eaec-0a53-2675-7f9061da4d63&userQuestionId=97bf8fb6-e1bc-09d0-3bcc-7c6067651ce4",
+							"raw": "{{HOST_URL}}/attempt/question?assignmentId=903dd20a-eaec-0a53-2675-7f9061da4d63&userQuestionId=0a43208f-2452-00c3-2967-ce60ed3652b7",
 							"host": [
 								"{{HOST_URL}}"
 							],
@@ -468,7 +468,7 @@
 								},
 								{
 									"key": "userQuestionId",
-									"value": "97bf8fb6-e1bc-09d0-3bcc-7c6067651ce4"
+									"value": "0a43208f-2452-00c3-2967-ce60ed3652b7"
 								}
 							]
 						}
@@ -482,7 +482,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"option\":\"\",\r\n    \"text\":\"\"\r\n}",
+							"raw": "{\r\n    \"type\":\"Subjective\",\r\n    \"option\":\"C\",\r\n    \"text\":\"YZA\",\r\n    \"selection\":\"NotAnswered\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -490,7 +490,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST_URL}}/attempt/answer?assignmentId=903dd20a-eaec-0a53-2675-7f9061da4d63&userQuestionId=97bf8fb6-e1bc-09d0-3bcc-7c6067651ce4",
+							"raw": "{{HOST_URL}}/attempt/answer?assignmentId=903dd20a-eaec-0a53-2675-7f9061da4d63&userQuestionId=0a43208f-2452-00c3-2967-ce60ed3652b7",
 							"host": [
 								"{{HOST_URL}}"
 							],
@@ -505,7 +505,7 @@
 								},
 								{
 									"key": "userQuestionId",
-									"value": "97bf8fb6-e1bc-09d0-3bcc-7c6067651ce4"
+									"value": "0a43208f-2452-00c3-2967-ce60ed3652b7"
 								}
 							]
 						}
@@ -524,7 +524,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"assignmentId\":\"\"\r\n}",
+							"raw": "{\r\n    \"assignmentIds\":[\"b5c9cfb4-9255-0c90-3376-264b58d5fb34\"]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -542,7 +542,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"assignmentId\":\"\",\r\n    \"questionId\":\"\",\r\n    \"mark\":\"\"\r\n}",
+							"raw": "[{\r\n    \"questionId\":\"e50687c1-9fd8-0fd4-0cff-699bbe2debf7\",\r\n    \"mark\":0\r\n}]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -554,13 +554,31 @@
 					"response": []
 				},
 				{
+					"name": "getSubjective",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"assignmentIds\":[\"b5c9cfb4-9255-0c90-3376-264b58d5fb34\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{HOST_URL}}/result/get/subjective"
+					},
+					"response": []
+				},
+				{
 					"name": "finalResult",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"assignmentId\":\"\"\r\n}",
+							"raw": "{\r\n    \"assignmentId\":[\"b5c9cfb4-9255-0c90-3376-264b58d5fb34\"]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -685,7 +703,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "OneTime 6fdd8e1d-26b1-4668-396c-9df2e5013c83.cec87aa9-8db3-b72f-0345-ad6824dc4f3b.723cdc4d-cc53-423c-bbaa-bbfdce85b19b",
+								"value": "OneTime 1be38827-6943-1f57-d7dc-1beb9d14eb95.806cc7b7-1ca6-2f89-a103-08fe869caf74.723cdc4d-cc53-423c-bbaa-bbfdce85b19b",
 								"type": "text"
 							}
 						],

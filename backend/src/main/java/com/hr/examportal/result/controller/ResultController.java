@@ -29,28 +29,50 @@ public class ResultController {
         if (json == null || !json.has("assignmentIds") || !json.get("assignmentIds").isArray()) {
             throw new CustomException("Invalid Data",HttpStatus.BAD_REQUEST);
         }
+        return ResponseEntity.ok(resultService.calculateResultMCQ(json));
+    }
+    @PostMapping("/get/subjective")
+    @PreAuthorize("hasRole('INSTRUCTOR')")
+    public ResponseEntity<Map<String,Object>> getSubjectiveQuestions(@RequestBody JsonNode json){
+        if (json == null || !json.has("assignmentIds") || !json.get("assignmentIds").isArray()) {
+            throw new CustomException("Invalid Data",HttpStatus.BAD_REQUEST);
+        }
+        return ResponseEntity.ok(resultService.getSubjectiveQuestions(json));
+    }
+
+    @PostMapping("/calculate/subjective")
+    @PreAuthorize("hasRole('INSTRUCTOR')")
+    public ResponseEntity<Map<String,Object>> generateResultSubjective(@RequestBody JsonNode json){
+        if(!json.isArray()) {
+            throw new CustomException("Invalid Data", HttpStatus.BAD_REQUEST);
+        }
+        Map<UUID, Integer> marks = new HashMap<>();
+        for(JsonNode data: json){
+            try {
+                marks.put(UUID.fromString(data.get("questionId").asText()),data.get("mark").asInt());
+            }catch (Exception e){
+                throw new CustomException("Invalid Data", HttpStatus.BAD_REQUEST);
+            }
+        }
+        return ResponseEntity.ok(resultService.calculateResultSubjective(marks));
+    }
+
+    @PostMapping("/generate")
+    @PreAuthorize("hasRole('INSTRUCTOR')")
+    public ResponseEntity<Map<String,Object>> generateResult(@RequestBody JsonNode json){
+        if (json == null || !json.has("assignmentIds") || !json.get("assignmentIds").isArray()) {
+            throw new CustomException("Invalid Data",HttpStatus.BAD_REQUEST);
+        }
 
         List<UUID> assignmentIds = new ArrayList<>();
         for (JsonNode node : json.get("assignmentIds")) {
             try {
                 assignmentIds.add(UUID.fromString(node.asText()));
             } catch (IllegalArgumentException ex) {
-                throw new CustomException("Invalid Data",HttpStatus.BAD_REQUEST);
+                throw new CustomException("Invalid Data", HttpStatus.BAD_REQUEST);
             }
         }
-
-        return ResponseEntity.ok(resultService.calculateResultMCQ(json));
-    }
-    @PostMapping("/calculate/subjective")
-    @PreAuthorize("hasRole('INSTRUCTOR')")
-    public ResponseEntity<Void> generateResultSubjective(){
-        return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build();
-    }
-
-    @PostMapping("/generate")
-    @PreAuthorize("hasRole('INSTRUCTOR')")
-    public ResponseEntity<Void> generateResult(){
-        return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build();
+        return ResponseEntity.ok(resultService.calculateFinalResult(assignmentIds));
     }
 
 
